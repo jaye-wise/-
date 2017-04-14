@@ -1,0 +1,163 @@
+/* 超小屏幕（手机，小于 768px） */
+/* 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的（还记得 Bootstrap 是移动设备优先的吗？） */
+
+body,ul,ol,input{margin:0;padding:0}
+li{
+    list-style: none;
+}
+html,body{
+    height: 100%;
+}
+.backgroundWrap{
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background-image: url(../img/bg.png);
+	background-color: #cad8ea;
+	background-size: 100vw 100vh;
+	z-index: -1;
+}
+.wrapper{
+    display: block;
+    background-image: url(../imgs/bg.gif);
+    background-color: #cad8ea;
+    width: 100%;
+    height: 100%;
+}
+.container-fluid{
+    height: 100px;
+}
+.navbar-header,ul,li,li a{
+    height: 100%;
+}
+img{
+    height: 100%;
+}
+.main-body{
+    margin: auto;
+    margin-top: 1%;
+    padding: 30px 0 102px;
+    width: 400px;
+    border-radius: 5px;
+    box-shadow: #ccc 5px 5px 25px;
+    text-align: center;
+    background-color: rgba(245, 245, 245, 0.18)
+}
+@media only screen and (min-height: 700px){
+    .main-body{
+    margin: auto;
+    margin-top: 10%;
+    padding: 30px 0 102px;
+    width: 400px;
+    border-radius: 5px;
+    box-shadow: #ccc 5px 5px 25px;
+    text-align: center;
+    background-color: rgba(245, 245, 245, 0.18)
+  }
+
+}
+.navs-slider a{
+    width: 4em;
+    line-height: 35px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.desk-form{
+    margin-bottom: -50px;
+}
+.subtitle {
+    margin: 30px 0 20px;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1;
+    color: #5a73af;
+}
+.index-tab-navs {
+    margin-bottom: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+form{
+    width: 75%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.form-group{
+    margin-bottom: 2px;
+    height: 55px;
+}
+.code span{
+    display: inline-block;
+    width: 39%;
+    height: 100%;
+    background-color: white;
+    line-height: 55px;
+}
+.form-group input{
+    height: 100%;
+    border: 0px;
+    border-radius: 0px;
+}
+.form-group .error{
+    position: relative;
+    top: -49px;
+    right: -58px;
+    height: 42px;
+    color: #ea6868;
+    line-height: 42px;
+    -moz-user-select: none;
+}
+.form-group .code-input{
+    display: inline-block;
+    float: left;
+    margin: 0px;
+    width: 60%;
+}
+.code .error{
+    position: relative;
+    top: -50px;
+    right: 25px;
+    height: 42px;
+    color: #ea6868;
+    line-height: 42px;
+    background: transparent;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    cursor: default;
+}
+.group-inputs {
+    padding: 1px 0;
+    border: 1px solid #d5d5d5;
+    border-radius: 3px;
+}
+form .btn{
+    margin-top: 10%;
+    width: 60%;
+}
+.setCode{
+    background:url(bg_1.jpg);
+    font-family:Arial;
+    font-style:italic;
+    color:blue;
+    font-size:30px;
+    border:0;
+    padding:2px 3px;
+    letter-spacing:3px;
+    font-weight:bolder;                       
+    cursor:pointer;
+    width:150px;
+    height:60px;
+    line-height:60px;
+    text-align:center;
+    vertical-align:middle;
+} 
+.btn a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+} 
+.footer{
+    text-align: center;
+    margin-top: 25px;
+}

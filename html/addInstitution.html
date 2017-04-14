@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/nav.css" />
+		<link rel="stylesheet" href="../css/user.css" />
+		<script src="../js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body ng-app='addInstitution'>
+		<!--nav导航栏-->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!--logo-->
+				<div class="navbar-header">
+					<ul class="logo">
+						<li role='presentation' class="active">
+							<a href="userInfo.html">
+								<img src="../img/shihelogo.png" alt="" />
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!--nav侧边菜单-->
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="./userOrders.html">我的订单</a>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle">welcome User<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="./userInfo.html">个人信息界面</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="../index.html">退出</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!--机构信息填写-->
+		<div class="up-down form-down" ng-controller='add'>
+			<form class="form-horizontal" role="form">
+				<h3>用户所属单位
+              </h3>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">国家</label>
+					<div class="line input-line col-sm-10">
+						<select class="form-control" id="lalala" ng-model='institution.department1'
+							ng-options='act for act in activities'>
+						</select>
+					</div>
+					<span class="error">请选择国家(必填)</span>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">学校/公司/医院</label>
+					<div class="line input-line col-sm-10">
+						<input type="text"  class="form-control" ng-model='institution.department2'/>
+					</div>
+					<span class="error">请填写学校/公司/医院(必填)</span>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">部门/院系</label>
+					<div class="line input-line col-sm-10">
+						<input type="text"  class="form-control" ng-model='institution.department3'/>
+					</div>
+					<span class="error">请填写部门/院系(必填)</span>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">科室</label>
+					<div class="line input-line col-sm-10">
+						<input type="text"  class="form-control" ng-model='institution.department4'/>
+					</div>
+					<span class="error">请填写科室/实验室(必填)</span>
+				</div>
+				<!--<div class="form-group">
+					<label class="col-sm-2 control-label">所属老师</label>
+					<div class="line input-line col-sm-10">
+						<input type="text"  class="form-control"/>
+					</div>
+					<span class="error">请填写选择老师</span>
+				</div>-->
+				<!--<div class="form-group">
+					<label class="col-sm-2 control-label">备注</label>
+					<div class="line input-line col-sm-10">
+						<input type="text" class="form-control" id="inputPassword" placeholder="">
+					</div>
+				</div>-->
+				<div class="form-group">
+					<label for="inputPassword" class="col-sm-2 control-label">设为默认单位</label>
+					<div class="line radio-line col-sm-10">
+						<input type="radio" name="default" id="default"> 是 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						<input type="radio" name="default"> 否
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"></label>
+					<div class="line org-line col-sm-10">
+						<input type='button' class="btn btn-default " ng-click="Add()" value="确认"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						<input type='button' class="btn btn-default " onclick="window.location.href='institution.html';" value="取消">
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</body>
+	<script src="../js/user/institution.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

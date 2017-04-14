@@ -1,0 +1,39 @@
+body,ul,ol,input{margin:0;padding:0}
+li{
+    list-style: none;
+}
+html,body{
+    height: 100%;
+}
+.wrapper{
+    display: block;
+    text-align: center;
+    width: 100%;
+    height: 120%;
+}
+.navbar{
+    position: fixed;
+    width: 100%;
+    background-color: #e9eff6;
+    top: 0px;
+    z-index: 1000;
+}
+.main-body{
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+.container-fluid{
+    height: 50px;
+}
+.navbar-header,li,li a{
+    height: 100%;
+}
+.logo{
+    height: 100%;
+}
+img{
+    height: 100%;
+}
+.dropdown:hover .dropdown-menu{
+	display: block;
+}

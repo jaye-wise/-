@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>世和基因科研服务订单系统</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/login.css"/>
+	<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body ng-app='index' ng-init='isLogin=true'>
+	<div class="backgroundWrap"></div>
+	<!--nav导航栏-->
+	 <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <ul>
+            <li role="presentation" class="active">
+              <a href="#">
+                <img src="img/shihelogo.png" alt="">
+              </a>
+            </li>
+          </ul>    
+        </div>
+      </div>
+      <!--主题form表单部分-->
+      <div class="main-body">
+        <h2 class="subtitle">科研管理系统</h2>
+        <div class="desk-form">
+        	<!--form的nav部分-->
+          <div class="index-tab-navs">
+            <div class="navs-slider" data-active-index="0">
+              <a href="#login" id="login" class="active" ng-click = 'isLogin = true'>登录</a>
+              <a href="#signup" id="signup" ng-click = 'isLogin = false'>注册</a>            
+            </div>
+          </div>
+          <!--登录框-->
+          <div id="view-login" class="view-login" ng-show = 'isLogin'  ng-controller='login'>
+            <form role="form">
+            	<!--用户名-->
+              <div class="form-group">
+                <input type="text" class="form-control" id="name" placeholder="用户名／邮箱地址" ng-model='name'>
+              </div>
+              <!--密码-->
+              <div class="form-group">
+                <input type="password" class="form-control" id="name" placeholder="密码" ng-model='password'>
+              </div> 
+              <!--验证码-->
+              <div class="form-group code">
+                <input type="text" class="form-control code-input" id="code" placeholder="验证码" ng-model='verifyCode' ng-blur="checkCode()">
+                <span>  
+                  <div class="setCode" id="checkCode" onclick="createCode()" ng-click='code=true'></div>
+                </span>
+                <label for="code" class="error" ng-hide='code'>验证码不正确</label>
+              </div>
+              <!--登录按钮-->
+              <button type="submit" class="btn btn-default" ng-click='login()' ng-disabled='!code'>登录</button>
+            </form>
+          </div>
+          <!--注册框-->
+          <div id="view-signup" class="view-signup" ng-hide = 'isLogin' ng-controller='register'>
+            <form role="form">
+            	<!--用户名-->
+              <div class="form-group">
+                <input type="text" class="form-control" id="registerUserName" placeholder="用户名" ng-model='userName' ng-blur='checkUserName()'>
+                <label for="registerUserName" class="error" ng-show='userNameHave'>用户名已存在</label>
+              </div>
+              <!--姓名-->
+              <div class="form-group">
+                <input type="text" class="form-control" id="registerName" placeholder="姓名" ng-model='name' ng-blur='name==""?nameWritten=false:nameWritten=true'>
+              </div> 
+              <!--邮箱-->
+               <div class="form-group">
+                <input type="text" class="form-control" id="registerMailAddress" placeholder="邮箱地址" ng-model='mailAddress' ng-blur='checkMailAddress()'>
+                <label for="registerMailAddress" class="error" ng-show='mailAddressHave'>邮箱已存在</label>
+              </div> 
+              <!--密码-->
+               <div class="form-group">
+                <input type="password" class="form-control" id="registerPassword" placeholder="创建密码" ng-model='password' ng-blur='doublePassword==password?passwordSame=true:passwordSame=false'>
+              </div> 
+              <!--二次密码-->
+               <div class="form-group">
+                <input type="password" class="form-control" id="confirmPassword" placeholder="确认密码" ng-model='doublePassword' ng-blur='doublePassword==password?passwordSame=true:passwordSame=false'>
+                <label for="confirmPassword" class="error" ng-hide='passwordSame'>密码不一致</label>
+              </div>   
+              <button type="submit" class="btn btn-default" ng-click='register()' ng-disabled='userNameHave||mailAddressHave'>注册</button>
+            </form>
+          </div>     
+        </div>
+
+      </div>
+</body>
+<script src="js/user/login.js" type="text/javascript" charset="utf-8"></script>
+</html>
