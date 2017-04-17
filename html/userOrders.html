@@ -7,12 +7,12 @@
 		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
 		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="../css/nav.css" />
-		<link rel="stylesheet" type="text/css" href="../css/user.css" />
+		<link rel="stylesheet" href="../css/user.css" />
 		<script src="../js/angular.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
-	<body ng-app='institution'>
+	<body>
 		<!--nav导航栏-->
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
@@ -49,46 +49,82 @@
 			</div>
 		</nav>
 
-		<div class="main-body" ng-controller='institutionList'>
+		<div class="main-body">
 
 			<div class="up-down form-down">
 				<table class="table table-hover table-bordered">
 					<span class="tableTitle">
                 <div>
-                  <h3>我的机构</h3>
+                  <h3>我的订单</h3>
                 </div>
-                <div class="newBtn">
-                  <button class="btn btn-default" ng-click='addInstitution()'>新增所属机构</button>
+                <div class="newBtn ">
+                  <button class="btn btn-default"><a href="./addOrder.html">新增订单</a></button>
                 </div>
               </span>
 					<thead>
 						<tr>
-							<th>国家</th>
-							<th>医院/大学/公司</th>
-							<th>所属部门/实验室</th>
+							<th>订单号</th>
+							<th>订单名称</th>
+							<th>项目名称</th>
+							<th>创建日期</th>
+							<th>订单状态</th>
 							<th>操作</th>
-							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat = 'x in institutionList'>
-							<td>{{x.department1}}</td>
-							<td>{{x.department2}}</td>
-							<td>{{x.department3}}</td>
+						<tr>
+							<td>400636200</td>
+							<td>Bangalore</td>
+							<td>560001</td>
+							<td>170320</td>
+							<td>未提交</td>
 							<td>
-								<button ng-click='changeInstitution(x._id)'>修改</button>
-								<button ng-click='deleteInstitution(x._id)'>删除</button>
+								<button>
+                      <a href="./addOrder.html">查看／修改订单</a>
+                    </button>
 							</td>
+						</tr>
+						<tr>
+							<td>400636201</td>
+							<td>Sachin</td>
+							<td>560002</td>
+							<td>170321</td>
+							<td>未提交</td>
 							<td>
-								<span ng-show='x.default'>默认机构</span>
-								<button ng-hide='x.default' ng-click='setDefault(x._id,x.Account)'>设为默认</button>
+								<button>
+                      <a href="./addOrder.html">查看／修改订单</a>
+                    </button>
+							</td>
+						</tr>
+						<tr>
+							<td>400636202</td>
+							<td>Uma</td>
+							<td>560003</td>
+							<td>170321</td>
+							<td>已提交</td>
+							<td>
+								<button>
+                      <a href="./addOrder.html">查看／修改订单</a>
+                    </button>
+							</td>
+						</tr>
+						<tr>
+							<td>400636203</td>
+							<td>Uma</td>
+							<td>560004</td>
+							<td>170323</td>
+							<td>已提交</td>
+							<td>
+								<button>
+                      <a href="./addOrder.html">查看／修改订单</a>
+                    </button>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+
 		</div>
 	</body>
-	
-	<script src="../js/user/institution.js" type="text/javascript" charset="utf-8"></script>
+
 </html>

@@ -6,10 +6,8 @@ userInfo.controller('userInfo_content',function($scope,$http){
 	//请求cookie里的个人信息
 	var url = 'http://localhost:8888/checkUser?callback=JSON_CALLBACK';
 	$http.jsonp(url).success(function(res){
-		console.log(res[0]);
 		$scope.userInfo = res[0];
 		temp = $scope.userInfo;
-		console.log(temp);
 		$scope.userInfo.newPwd='';
 		if($scope.userInfo.Phone){
 			$scope.updateInfo = false;

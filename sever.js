@@ -46,7 +46,8 @@ var InstitutionSchema = new mongoose.Schema({
     collection:'institution'
 })
 var Institution = db.model('institution',InstitutionSchema);
-var Institution = db.model('institution',InstitutionSchema);
+
+var 
 
 //开启cookie
 app.use(cookieParser());
@@ -59,7 +60,7 @@ app.get('/login',function(req,res){
             console.log(err);
         }
         if(doc){
-            res.cookie('ShiHeOrderSystem', {Account:doc[0].Account});
+            res.cookie('Account',doc[0].Account);
             var json = JSON.stringify(doc);
             res.end(cb+"("+json+")");
         }
@@ -116,9 +117,9 @@ app.get('/register',function (req,res) {
 
 //检测当前登录的用户
 app.get('/checkUser',function (req,res) {
-    if(req.cookies.ShiHeOrderSystem){
+    if(req.cookies.Account){
         var cb = req.query.callback;
-        User.find({Account:req.cookies.ShiHeOrderSystem.Account},{},function (err,doc) {
+        User.find({Account:req.cookies.Account},{},function (err,doc) {
             if(err){
                 console.log(err);
             }
@@ -151,14 +152,13 @@ app.get('/updateUserInfo',function (req,res) {
 
 //搜索出机构列表
 app.get('/searchInstitution',function (req,res) {
-    if(req.cookies.ShiHeOrderSystem){
+    if(req.cookies.Account){
         var cb = req.query.callback;
-        Institution.find({Account:req.cookies.ShiHeOrderSystem.Account},{},function (err,doc) {
+        Institution.find({Account:req.cookies.Account},{},function (err,doc) {
             if(err){
                 console.log(err);
             }
             else{
-                console.log(doc);
                 var json=JSON.stringify(doc);
                 res.end(cb+'('+json+')');
             }
@@ -166,11 +166,32 @@ app.get('/searchInstitution',function (req,res) {
     }
 })
 
+//修改机构按钮点击时修改cookie信息
+app.get('/changeInstitution',function (req,res) {
+    var cb = req.query.callback;
+    res.cookie('InstitutionId',req.query._id);
+    console.log(req.cookies.Institution);
+    res.end(cb+'({"errcode":0,"msg":"修改成功"})');
+})
+
+//删除机构
+app.get('/deleteInstitution',function (req,res) {
+    var cb = req.query.callback;
+    Institution.remove({'_id':req.query._id},function (err) {
+        if(err){
+            console.log(err);
+        }else{
+            res.end(cb+'({"errcode":0,"msg":"删除成功"})');
+        }
+    })
+})
+
+
 //修改机构的机构信息提取
 app.get('/checkInstitution',function (req,res) {
-    if(req.cookies.ShiHeOrderSystem.InstitutionId!=''){
+    if(req.cookies.InstitutionId!=''){
         var cb = req.query.callback;
-        Institution.find({_id:req.cookies.ShiHeOrderSystem.InstitutionId},{},function (err,doc) {
+        Institution.find({_id:req.cookies.InstitutionId},{},function (err,doc) {
             if(err){
                 console.log(err);
             }
@@ -196,7 +217,7 @@ app.get('/addInstitution',function (req,res) {
         department5:req.query.department5,
         department6:req.query.department6
     }
-    if(req.cookies.ShiHeOrderSystem.InstitutionId!=undefined){
+    if(req.cookies.InstitutionId!=undefined){
         Institution.update({_id:req.query._id},{$set:docs},function (err,doc) {
             if(err){
                 console.log('err');
@@ -216,6 +237,26 @@ app.get('/addInstitution',function (req,res) {
             }
         })
     }
+})
+
+//设为默认机构
+app.get('/setDefault',function (req,res) {
+    var cb = req.query.callback;
+    console.log(req.query);
+    Institution.update({Account:req.query.Account},{$set:{defalut:false}},function (err,doc) {
+        if(err){
+            console.log('err');
+            console.log(err);
+        }
+    })
+    Institution.update({_id:req.query._id},{$set:{defalut:true}},function (err,doc) {
+        if(err){
+            console.log('err');
+            console.log(err);
+        }else{
+            res.end(cb+'({"errcode":0,"msg":"更新成功"})');
+        }
+    })
 })
 
 app.get('/',function (req,res) {

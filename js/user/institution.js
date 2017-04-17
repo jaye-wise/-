@@ -6,8 +6,55 @@ institution.controller('institutionList',function($scope,$http){
 	var url = 'http://localhost:8888/searchInstitution?callback=JSON_CALLBACK';
 	$http.jsonp(url).success(function(res){
 		console.log(res);
-		$scope.institutionList=res[0];
+		$scope.institutionList=res;
+		for(var i=0;i<$scope.institutionList.length;i++){
+			if($scope.institutionList[i].department4!='undefined'){
+				$scope.institutionList[i].department3=$scope.institutionList[i].department3+'-'+$scope.institutionList[i].department4;
+				if($scope.institutionList[i].department5!='undefined'){
+					$scope.institutionList[i].department3=$scope.institutionList[i].department3+'-'+$scope.institutionList[i].department5;
+					if($scope.institutionList[i].department6!='undefined'){
+						$scope.institutionList[i].department3=$scope.institutionList[i].department3+'-'+$scope.institutionList[i].department6;
+					}
+				}
+			}
+		}
 	})
+	
+	//添加机构按钮
+	$scope.addInstitution = function(){
+		var url = 'http://localhost:8888/changeInstitution?callback=JSON_CALLBACK'
+		$http.jsonp(url).success(function(res){
+			window.location.href='addInstitution.html';
+		})
+	}
+	
+	//修改按钮
+	$scope.changeInstitution = function(id){
+		var url = 'http://localhost:8888/changeInstitution?_id='+id+'&callback=JSON_CALLBACK'
+		$http.jsonp(url).success(function(res){
+			window.location.href='addInstitution.html';
+		})
+	}
+	
+	//删除按钮
+	$scope.deleteInstitution = function(id){
+		if(confirm('确定要删除么')){
+			var url = 'http://localhost:8888/deleteInstitution?_id='+id+'&callback=JSON_CALLBACK'
+			$http.jsonp(url).success(function(res){
+				alert('删除成功');
+				window.location.href='institution.html';
+			})
+		}
+	}
+	
+	//设为默认
+	$scope.setDefault = function(id,Account){
+		var url = 'http://localhost:8888/setDefault?_id='+id+'&Account='+Account+'&callback=JSON_CALLBACK'
+		$http.jsonp(url).success(function(res){
+				console.log('设置成功');
+				window.location.href='institution.html';
+			})
+	}
 })
 
 //添加机构页
